@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+  <style>
+    #map {
+      width: 750px;
+      height: 590px;
+    }
+
+    .info {
+      padding: 6px 8px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      background: black;
+      background: rgb(2, 2, 2);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
+
+    .info h4 {
+      margin: 0 0 5px;
+      color: #777;
+    }
+
+    .legend {
+      text-align: left;
+      line-height: 18px;
+      color: #555;
+    }
+
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      opacity: 0.7;
+    }
+
+    #party-chart {
+      width: 100%;
+      margin: 20px;
+    }
+
+    #state-chart {
+      width: 100%;
+      margin: 20px;
+    }
+
+    #table {
+      width: 100%;
+      margin: 20px;
+    }
+
+    body {
+      margin: 10px 0px 10px 0px;
+      background-color: #efefef;
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <header class="header clearfix">
+      <nav>
+        <ul class="nav nav-pills float-right">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Início<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </nav>
+      <h1><b>Relação dos esportes eletrônicos com o mercado de games </h1>
+      <div id="cincopa_012f50">...</div>
+      <script type="text/javascript">
+        var cpo = []; cpo["_object"] = "cincopa_012f50"; cpo["_fid"] = "AgPAhyet2hZy";
+        var _cpmp = _cpmp || []; _cpmp.push(cpo);
+        (function () {
+          var cp = document.createElement("script"); cp.type = "text/javascript";
+          cp.async = true; cp.src = "https://rtcdn.cincopa.com/libasync.js";
+          var c = document.getElementsByTagName("script")[0];
+          c.parentNode.insertBefore(cp, c);
+        })(); </script>
+    </header>
+
+    </br>
+    <h4><b> Descrição do projeto</b></h4>
+    <p>O presente projeto tem o objetivo de demonstrar a relação entre as premiações de esportes eletrônicos e a venda
+      de jogos eletrônicos. O projeto é baseado em informações contidas no site de esportes eletrônicos
+      esportsearnings.com [1] e as vendas de videogames lançados antes de 2017, de acordo com o conjunto de dados
+      Videogame Sales em kaggle.com [2] . Através das visualizações será possível verificar se há alguma relação com o
+      valor de premiações e a quantidade de vendas.
+    </p>
+
+    </br>
+    <h4><b> Descrição dos dados</b></h4>
+    <p>Os dados sobre esportes eletrônicos foram retirados da fonte esportsearnings.com [1] , esta base traz informações
+      sobre torneios de eSports atuais e anteriores, com informações sobre o tamanho do prêmio, número de competidores,
+      número de torneios, país que ganha mais e melhores jogadores. Como não há a possibilidade de download diretamente
+      dos dados do site, será feita a extração das informações necessárias usando o Web Scraping [3].
+    </p>
+    <p> Os dados sobre as vendas sales.csv apresentam um conjunto de dados de vendas de videogame em kaggle.com [2] .
+      Este conjunto de dados categorizou os videogames lançados antes de 2017 e os organizou por desenvolvedor, editor,
+      plataforma, data de lançamento, classificação ESRB, vendas em diferentes regiões e pontuações do Metacritic por
+      críticos e usuários.
+    </p>
+    <p>Posteriormente será realizado a combinação entre as duas bases de dados, eliminando as dimensões desnecessárias,
+      para o objetivo do projeto, os nomes dos jogos serão comparados entre as duas planilhas e serão mantidas para
+      análise apenas os jogos que existem nas duas bases de dados
+    </p>
+
+
+    </br>
+    <h4><b> Perguntas de partida</b></h4>
+    <p>Algumas perguntas iniciais foram elaboradas para dirigir o desenvolvimento das visualizações:
+    </p>
+    <p> As vendas de jogos fazem diferença no total de prémios dos campeonatos?
+    </p>
+    <p>Quais tipos de jogos possuem maior premiação?
+    </p>
+    <p> O principal país para campeonatos afeta as vendas de jogos nesta região?
+    </p>
+
+
+    </br>
+    <h4><b> Metodologia</b></h4>
+    Foi feita a análise inicial dos dados para verificar as dimensões e as relações que serão usadas para os objetivos e
+    perguntas base do projeto. Os dados filtrados foram alocados em um repositório gist.
+
+    <p>As visualizações foram construídas usando a linguagem JavaScript (JS) para a criação das visualizações gráficas,
+      incorporando as seguintes bibliotecas: Data Driven Documents (D3), Crossfilter, Dimensional Charting (DC)
+      eVega-embed [4]
+    </p>
+    <p>Foi utilizado como ambiente para simulações o ObservableHQ que utiliza o paradigma de notebooks e interage muito
+      bem com bibliotecas JS para gerar as visualizações que posteriormente foram indexadas a página principal de
+      visualização, essa metodologia permite a alteração das visualizações de forma independente do código da página
+      web.
+    </p>
+    <p>Por fim, foi construído um site com base nas tecnologias HTML, CSS, e JavaScript para estruturação da página,
+      estilização e dinamicidade respectivamente. Esse site interativo será disponibilizado no Github Pages.
+    </p>
+
+    </br>
+    <h4><b> Visualizações</b></h4>
+    <iframe width="100%" height="3280" frameborder="0"
+      src="https://observablehq.com/embed/@analistajcarloslima/relacao-dos-esportes-eletronicos-com-o-mercado-de-games?cells=viewof+salesPrizeMoney"></iframe>
+
+
+    </br>
+    <h4><b> Implementação </b></h4>
+    Após a análise inicial dos dados foram selecionadas as dimensões a serem usadas na visualização. Do conjunto de
+    dados de vendas de videogame do Kaggle [2] , estamos usando apenas os nomes dos videogames, as dimensões
+    relacionadas às vendas (vendas globais, vendas NA, vendas na UE, vendas no Japão e outras vendas) e o gênero de jogo
+    para diferenciação nos canais de cores.
+
+    <p>A partir dos dados dos eSports [1], estamos usando os nomes dos videogames (que se correlacionam com o conjunto
+      de dados de vendas de videogames), o número de competidores, o prêmio em dinheiro e o país com maior ganho.
+    </p>
+    Depois de obter nossos conjuntos de dados brutos, os arquivos .csv foram armazenados no Gist, que é uma ferramenta
+    que permite o compartilhamento de pequenos trechos de código. Há também quem use o Gist para mostrar textos e
+    opiniões, com essa ferramenta foi possível acessar os dados sem a necessidade de ter os arquivos no host local.
+    </p>
+    <p>Foi realizada a combinação dos dados de forma que eles se correlacionarem. A primeira etapa foi eliminar todos os
+      jogos de nosso conjunto de dados de eSports que não estavam presentes no conjunto de dados de vendas de videogame
+      (já que a maioria dos dados vinha de lá). Através da localização das entradas no conjunto de dados Videogame Sales
+      e copiando-as para uma nova planilha. A partir daí, foi aplicada a combinação dos jogos de mesmo nome, já que o
+      conjunto de dados Videogame Sales tinha entradas repetidas para diferentes plataformas. Para fazer isso, foi feita
+      a combinação das vendas de cada plataforma, calculando a média das pontuações dos críticos e das pontuações do
+      usuário (já que essas pontuações às vezes eram diferentes para plataformas diferentes) e eliminando quaisquer
+      dimensões desnecessárias (como editor e plataforma).
+    </p>
+
+    <p></p>Também foi feito um tratamento para a data de lançamento mais antiga, como alguns jogos lançados em anos
+    diferentes (um exemplo seria a versão para PC do jogo lançado um ano após as versões para Xbox e Playstation). A
+    partir daí, foi decidido combinar nossos dados em um conjunto de dados, tornando-o mais fácil de usar no notebook
+    Observable.
+
+    <p>foram adicionadas as dimensões do conjunto de dados de eSports às entradas correspondentes. As dimensões
+      transferidas foram o número de jogadores, o número de torneios, o prêmio em dinheiro, o melhor país e a região.
+      Esta foi a inicial do conjunto de dados originalmente. No entanto, houve um problema. Os valores do prêmio em
+      dinheiro incluíam um cifrão, e isso não funcionou no Observable, pois não nos permitiu classificar nosso gráfico
+      de dispersão em ordem crescente por prêmio em dinheiro. Para corrigir isso, a última alteração que fizemos nos
+      dados foi remover o cifrão da dimensão do prêmio, deixando assim como conjunto de dados finais.
+    </p>
+    <p>A primeira visualização apresentada traça a relação entre as vendas globais de cada videogame em nosso conjunto
+      de dados e o prêmio em dinheiro total de eSports concedido para cada jogo. Foi utilizado um gráfico de dispersão
+      para esta visualização porque há uma quantidade relativamente alta de jogos para exibir e após a análise de
+      modelos de gráficos observou-se que normalmente é mais fácil descobrir tendências e relações de gráficos de
+      dispersão do que outros métodos de visualização baseados em texto.
+    </p>
+    <p></p>O gênero de cada videogame também é exibido na forma de variações de cores dos pontos. Essa visualização
+    fornece essencialmente aos usuários uma maneira de explorar rapidamente a relação entre as vendas globais de
+    videogames e prêmios em dinheiro em torneios de eSports, enquanto também vê quais gêneros são mais populares e
+    cumulativamente contêm prêmios mais altos de eSports. Passar o mouse sobre um ponto no gráfico de dispersão revela o
+    título do videogame, o valor dos dados de vendas globais e o valor dos dados do prêmio em dinheiro. Além disso, os
+    usuários podem destacar uma seção da visualização por meio da técnica de Brush, e a visualização a seguir fornece
+    uma visão mais ampliada e legível dos dados destacados.
+    </p>
+    <p>A segunda visualização é uma versão ampliada da visualização anterior, com base nos dados que o usuário destaca
+      ao selecionar a área de destaque com o Brush. Esse recurso de zoom foi bastante útil devido ao alto volume de
+      videogames na primeira visualização e sua aparência desordenada e talvez indistinta, isso pode ser observado nos
+      jogos que têm menor prêmio em dinheiro total em nosso conjunto de dados. Além disso, espera-se que os usuários
+      destaquem um conjunto de dados na visualização ampliada. Eles podem escolher passar por cima de um ou mais
+      videogames, e isso leva ao restante das visualizações de forma dinâmica.
+    </p>
+
+    <p>A seleção anterior de jogos em que o usuário destaca com Brush altera e atualiza as cinco visualizações a seguir:
+    </p>
+    <p>Primeiro, os usuários veem um gráfico de barras construído para representar o número de jogadores que jogaram nos
+      torneios de eSports do jogo selecionado. O nome do jogo também é exibido no eixo x, nos casos em que o usuário
+      seleciona mais de um jogo. Além disso, se os usuários passarem o mouse sobre uma barra nesta visualização, o país
+      principal dos torneios de eSports do videogame será exibido. Este gráfico de barras pode fornecer informações
+      sobre quantas pessoas o prêmio em dinheiro foi distribuído para o jogo de interesse, bem como qual país reina
+      superior nos torneios do jogo em geral.
+    </p>
+    <p> Os usuários podem ver e comparar facilmente o número de jogadores entre diferentes jogos, observando as alturas
+      das barras. Além disso, em vez de ter que rolar para o topo das visualizações concatenadas para ver uma legenda
+      que revelaria cores e seus países correspondentes. Essa visualização pode ser útil ao tentar determinar a
+      popularidade da participação em torneios de eSports de certos jogos e quais países podem dominar cada jogo e
+      talvez ser um bom local para hospedar.
+    </p>
+    <p>Novamente, com base na seleção dos jogos nas visualizações anteriores, as vendas são reveladas e divididas em
+      regiões. Os usuários podem analisar essas visualizações para determinar como as vendas do jogo são divididas ao
+      redor e talvez explorar as relações entre os principais países de eSports de videogames e as vendas desses
+      videogames nesses países.
+    </p>
+    <p>Após a criação das visualizações no notebook Observable utilizamos o recurso de incorporação para inserir as
+      visualizações em uma página html e css para visualização final dos usuários, isso permite ter uma maior
+      independência dos arquivos utilizados para visualização
+    </p>
+    </br>
+
+    <h4><b> Conclusões</b></h4>
+    Como resultado do projeto conclui-se que as visualizações construídas podem ser um bom ponto de partida para
+    explorar os dados de vendas de videogames recuperados do Kaggle e os dados de eSports recuperados do esporte
+    earnings.net. Os usuários podem explorar relacionamentos potenciais entre prêmios de eSports, países que jogam
+    melhor e efeitos nas vendas de videogames.
+  </br>
+
+    </br>
+    <h4><b> Referências</b></h4>
+    <p>[1] <a href="https://www.esportsearnings.com/games/browse-by-name">esportsearnings</a></p>
+    </p>
+    <p>[2] <a href="https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings">kaggle.com</a></p>
+    </p>
+    <p>[3] <a
+        href="https://goomore.com/blog/web-scraping-python/#:~:text=O%20que%20%C3%A9%20Web%20Scraping,dados%2C%20JSON%20ou%20Planilha).">web-scraping-python</a>
+    </p>
+    </p>
+    <p>[4] <a href="https://vega.github.io/vega-lite/docs/title.html?">vega-lite</a></p>
+    </p>
+    <!-- FOOTER -->
+    <footer class="container">
+      <p align="center"> By João Carlos Lima: Disciplina de Visualização Científica. Universidade Federal do Ceará. Professora Emmanuele Santos.</p>
+    </footer>
+
+    </main>
+</body>
+
+</html>

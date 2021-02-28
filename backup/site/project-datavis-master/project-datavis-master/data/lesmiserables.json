@@ -1,0 +1,29 @@
+{
+  "nodes": [
+    {"id": "PMDB", "value": 131},
+    {"id": "PT"  , "value": 79 },
+    {"id": "PP"  , "value": 76 },
+    {"id": "PR"  , "value": 56 },
+    {"id": "PSDB", "value": 56 },
+    {"id": "PSD",  "value": 34 },
+    {"id": "PDT",  "value": 29 },
+    {"id": "PTB",  "value": 29 },
+    {"id": "PSB",  "value": 24 },
+    {"id": "PSC",  "value": 18 },
+    {"id": "PEN",  "value": 12 },
+    {"id": "SD" ,  "value": 11 },
+    {"id": "PRB",  "value": 10 },
+    {"id": "DEM",  "value": 9 },
+    {"id": "PPS",  "value": 7 },
+    {"id": "PSOL",  "value": 7 },
+    {"id": "Outros",  "value": 29 }
+  ],
+  "links": [
+    {"source": "PMDB", "target": "PR", "value": 1},
+    {"source": "PSC",  "target": "PSD", "value": 1},
+    {"source": "PP",  "target": "Outros", "value": 1},
+    {"source": "PMDB", "target": "PP", "value": 3},
+    {"source": "PSDB", "target": "PP", "value": 1},
+    {"source": "PMDB", "target": "PSD", "value": 1}
+  ]
+}

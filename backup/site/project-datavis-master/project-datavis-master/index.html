@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <title>Parlamentares</title>
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+
+   <!-- color breaer-->
+   <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+
+	<style>
+			#map {
+				width: 750px;
+				height: 590px;
+			}
+			.info {
+				padding: 6px 8px;
+				font: 14px/16px Arial, Helvetica, sans-serif;
+				background: white;
+				background: rgba(255,255,255,0.8);
+				box-shadow: 0 0 15px rgba(0,0,0,0.2);
+				border-radius: 5px;
+			}
+			.info h4 {
+				margin: 0 0 5px;
+				color: #777;
+			}
+
+			.legend {
+				text-align: left;
+				line-height: 18px;
+				color: #555;
+			}
+			.legend i {
+				width: 18px;
+				height: 18px;
+				float: left;
+				margin-right: 8px;
+				opacity: 0.7;
+			}
+      #party-chart {
+        width: 100%;
+        margin: 20px;
+      }
+      #state-chart {
+        width: 100%;
+        margin: 20px;
+      }
+      #table {
+        width: 100%;
+        margin: 20px;
+      }
+
+      body {
+          margin: 10px 0px 10px 0px;
+          background-color: #efefef;
+      }
+		</style>
+    <!-- Custom styles for this template -->
+   <link rel="stylesheet" href="css/dc.css">
+   <link rel="stylesheet" href="css/style.css">
+   <script src="js/crossfilter.js" charset="utf-8"></script>
+   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+   <script src="js/dc.js" charset="utf-8"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+<div class="container">
+  <header class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Início<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sobre.html">Sobre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contato.html">Autores</a>
+            </li>
+          </ul>
+        </nav>
+        <h1><b>Parlamentares </b> Réus nos Tribunais </h1>
+      </header>
+
+    </br>
+     <h4><b>Processos dos Parlamentares por Estado</b></h4>
+     <p>Esta visualização apresenta os processos dos parlamentares por Estado. Ao passar o mouse em cima da região desejada, irá aparecer o total de parlamentares processados e a lista dos nomes junto com a quantidade de processos que cada um possue.</p>
+     <div id="map">
+	  	  <strong>Processos por Estado</strong>
+     </div>
+   </div>
+
+</br>
+    <div class="container">
+      <header>
+      <h4><b>Rede de Relacionamento de Parlamentares</b></h4>
+      <p>Esta rede é composta da seguinte forma: cada nó é um partido, o tamanho do nó é proporcional ao número de ações associadas ao partido. Cada link representa um processo que acusa políticos entre dois partidos.</p>
+      </header>
+      <div id="main" role="main">
+        <div id="vis"></div>
+      </div>
+    </div> <!--! end of #container -->
+
+</br>
+     <div class='container'>
+              <h4> <b>Ações que os Parlamentares são Acusados</b> </h4>
+		<div id='party-chart'>
+                  <h6> Número de ações por Partido </h6>
+                </div>
+
+		<div id='state-chart'>
+                  <h6> Número de ações por Estado </h6>
+                </div>                     
+    <div id='table'>
+              <h6>Lista de Parlamentares</h6>
+                <table class="table table-hover" id="dc-table-graph">
+                    <thead>
+                        <tr class="header">
+                            <th>Nome</th>
+                            <th>Cargo</th>
+                            <th>Partido</th>
+                            <th>Estado</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+
+<!-- Carrega os dados geométricos dos Estados Brasileiros  -->
+<script type="text/javascript" src="brazil_geo.js"></script>
+
+<!-- Carrega visualização dos crimes por estado-->
+<script type="text/javascript" src="VisMapEstados.js"></script>
+
+<!-- Carrega visualização do node-link de partidos -->
+<script src="js/Tooltip.js"></script>
+<script src="js/lesmiserablesnetworkvis.js"></script>
+<script type="text/javascript" src="VisNetPartidos.js"></script>
+
+<!-- Carrega visualização dos gráficos de barra e tabela. -->
+<script type="text/javascript" src="VisGraphTable.js"></script>
+      <!-- FOOTER -->
+      <footer class="container">
+        <p align="center">Disciplina de Visualização Científica. Universidade Federal do Ceará. Professora Emmanuele.</p>
+      </footer>
+
+    </main>
+  </body>
+</html>
