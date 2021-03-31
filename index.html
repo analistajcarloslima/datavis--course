@@ -86,7 +86,7 @@
           cp.async = true; cp.src = "https://rtcdn.cincopa.com/libasync.js";
           var c = document.getElementsByTagName("script")[0];
           c.parentNode.insertBefore(cp, c);
-        })(); </script>
+        })();</script>
     </header>
 
     </br>
@@ -135,7 +135,8 @@
 
     <p>As visualizações foram construídas usando a linguagem JavaScript (JS) para a criação das visualizações gráficas,
       incorporando as seguintes bibliotecas: Data Driven Documents (D3), Crossfilter, Dimensional Charting (DC)
-      eVega-embed [4] e Vega Vega-Lite são ferramentas de visualização que implementam uma gramática de gráficos, semelhante ao ggplot2.
+      eVega-embed [4] e Vega Vega-Lite são ferramentas de visualização que implementam uma gramática de gráficos,
+      semelhante ao ggplot2.
     </p>
     <p>Foi utilizado como ambiente para simulações o ObservableHQ que utiliza o paradigma de notebooks e interage muito
       bem com bibliotecas JS para gerar as visualizações que posteriormente foram indexadas a página principal de
@@ -160,7 +161,7 @@
     para diferenciação nos canais de cores.
 
     <p>A partir dos dados dos eSports [1], estamos usando os nomes dos videogames (que se correlacionam com o conjunto
-      de dados de vendas de videogames), o número de competidores, o prêmio em dinheiro e o país com maior ganho.
+      de dados de vendas de videogames), o número de competidores, o prêmio em dinheiro e o país com z.
     </p>
     Depois de obter nossos conjuntos de dados brutos, os arquivos .csv foram armazenados no Gist, que é uma ferramenta
     que permite o compartilhamento de pequenos trechos de código. Há também quem use o Gist para mostrar textos e
@@ -186,7 +187,7 @@
       Esta foi a inicial do conjunto de dados originalmente. No entanto, houve um problema. Os valores do prêmio em
       dinheiro incluíam um cifrão, e isso não funcionou no Observable, pois não nos permitiu classificar nosso gráfico
       de dispersão em ordem crescente por prêmio em dinheiro. Para corrigir isso, a última alteração que fizemos nos
-      dados foi remover o cifrão da dimensão do prêmio, deixando assim como conjunto de dados finais.
+      dados foi remover o cifrão da dimensão do prêmio, deixando assim como conjunto de dados finais <b>noDollar</b>.
     </p>
     <p>A primeira visualização apresentada traça a relação entre as vendas globais de cada videogame em nosso conjunto
       de dados e o prêmio em dinheiro total de eSports concedido para cada jogo. Foi utilizado um gráfico de dispersão
@@ -210,24 +211,39 @@
       videogames, e isso leva ao restante das visualizações de forma dinâmica.
     </p>
 
-    <p>A seleção anterior de jogos em que o usuário destaca com Brush altera e atualiza as cinco visualizações a seguir:
+    <p>A seleção anterior de jogos em que o usuário destaca com Brush altera e atualiza as 06 visualizações a seguir:
+
+    <p> Na Terceira visualização:<b> Number of eSports Tournaments in countries: Hover to view the amount of tournaments
+        for each genre and each game</b>, os usuários veem um gráfico de barras empilhadas que demonstra A quantidade de
+      torneiros
+      realizados por país<b>Top_Country</b>., além disso é possivel verificar quais são os gêneros preferidos de games
+      <b>Genre</b>. para realização dos
+      torneios em cada país.
     </p>
-    <p>Primeiro, os usuários veem um gráfico de barras construído para representar o número de jogadores que jogaram nos
-      torneios de eSports do jogo selecionado. O nome do jogo também é exibido no eixo x, nos casos em que o usuário
+
+    <p>Na Quarta visualização: <b> umber of eSports Players in Game's Tournaments: Hover to view top competing
+        country</b>
+      , os usuários veem um gráfico de barras construído para representar o número de jogadores que participaram nos
+      torneios de eSports do jogo selecionado. O nome do jogo <b>Name</b> também é exibido no eixo x, nos casos em que o
+      usuário
       seleciona mais de um jogo. Além disso, se os usuários passarem o mouse sobre uma barra nesta visualização, o país
       principal dos torneios de eSports do videogame será exibido. Este gráfico de barras pode fornecer informações
       sobre quantas pessoas o prêmio em dinheiro foi distribuído para o jogo de interesse, bem como qual país reina
-      superior nos torneios do jogo em geral.
+      superior nos torneios do jogo em geral :<b>Top_Country</b>.
     </p>
     <p> Os usuários podem ver e comparar facilmente o número de jogadores entre diferentes jogos, observando as alturas
       das barras. Além disso, em vez de ter que rolar para o topo das visualizações concatenadas para ver uma legenda
       que revelaria cores e seus países correspondentes. Essa visualização pode ser útil ao tentar determinar a
       popularidade da participação em torneios de eSports de certos jogos e quais países podem dominar cada jogo e
-      talvez ser um bom local para hospedar.
+      talvez ser um bom local para hospedar torneios e servidores.
     </p>
-    <p>Novamente, com base na seleção dos jogos nas visualizações anteriores, as vendas são reveladas e divididas em
+
+    <p>Nas visualizações 5,6 e 7 <b>North American, European and Japanese Sales of Previously Selected Video Games</b>,
+      novamente, com base na
+      seleção dos jogos nas visualizações anteriores, as vendas são reveladas e divididas em
       regiões. Os usuários podem analisar essas visualizações para determinar como as vendas do jogo são divididas ao
-      redor e talvez explorar as relações entre os principais países de eSports de videogames e as vendas desses
+      redor das regiões e talvez explorar as relações entre os principais países de eSports de videogames e as vendas
+      desses
       videogames nesses países.
     </p>
     <p>Após a criação das visualizações no notebook Observable utilizamos o recurso de incorporação para inserir as
@@ -237,11 +253,24 @@
     </br>
 
     <h4><b> Conclusões</b></h4>
+    A partir dos resultados obtidos com as visualizaçãoes e as questões iniciais da pesquisa podemos ter aglumas
+    inferencias:
+    <ul>
+      <li>A premiação não tem relação direta com a as vendas de um jogo ( Entretando não levamos em consideração a
+        quantidade de microtransações ou populariadade)</li>
+      <li>Jogos no estilo shooter e Fighting demonstraram no geral um melhor desempenho em vendas e em Esports
+        (premiação e Quantidade de Campeonatos) </li>
+      <li>O desenpenho em Esports dos países (Quantidade de campenatos, domínio, e quantidade de jogadores) influenciam
+        as vendas nas regiões principais) </li>
+    </ul>
+
     Como resultado do projeto conclui-se que as visualizações construídas podem ser um bom ponto de partida para
     explorar os dados de vendas de videogames recuperados do Kaggle e os dados de eSports recuperados do esporte
     earnings.net. Os usuários podem explorar relacionamentos potenciais entre prêmios de eSports, países que jogam
     melhor e efeitos nas vendas de videogames.
-  </br>
+
+
+    </br>
 
     </br>
     <h4><b> Referências</b></h4>
@@ -257,7 +286,8 @@
     </p>
     <!-- FOOTER -->
     <footer class="container">
-      <p align="center"> By João Carlos Lima: Disciplina de Visualização Científica. Universidade Federal do Ceará. Professora Emmanuele Santos.</p>
+      <p align="center"> By João Carlos Lima: Disciplina de Visualização Científica. Universidade Federal do Ceará.
+        Professora Emmanuele Santos.</p>
     </footer>
 
     </main>
